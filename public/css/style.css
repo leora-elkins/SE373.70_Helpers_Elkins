@@ -1,0 +1,15 @@
+.colors {
+    height: 45px;
+    width: 45px;
+    padding: 10px;
+    text-align: center;
+}
+
+.top {
+    color:white;
+    
+}
+
+.bottom {
+    color: black;
+}
