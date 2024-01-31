@@ -20,13 +20,14 @@ hbs.registerHelper('colors',(num)=> {
     return new hbs.handlebars.SafeString(msg);
 });
 
-hbs.registerHelper('errpage',(num)=> {
-    var msg = '<p>Not Found</p>';
-    num = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+hbs.registerHelper('error404',(num)=> {
+    var msg = '<p style="font-weight:600">Not Found</p>';
+    num = Math.floor(Math.random() * (50 - 20 + 1)) + 20;    
+    var classes = ["rotate","shrink","still"];   
+    
     for(let i=0; i<num; i++) {
-        for(let j=0; j<num; j++) {
-            msg+=`<div class="shrink" style="background-color:#${color}"></div>`;
-        }
+        var _class = classes[Math.floor(Math.random()*classes.length)];
+        msg+=`<div class="${_class}">404</div>`;
     }
     return new hbs.handlebars.SafeString(msg);
 });
@@ -41,11 +42,9 @@ app.post('/results',(req,res)=> {
     })
 })
 
-app.use((req, res, next)=>{
-    const error = new Error('Page not found');
-    error.status = 404;
-    next(error);
-});
+app.use('/error',(req, res)=> {
+    res.render('error.hbs');
+})
 
 app.listen(3000, ()=>{
     console.log(`Server is running on Port ${port}`);
