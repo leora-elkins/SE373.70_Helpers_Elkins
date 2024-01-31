@@ -1,8 +1,3 @@
-/*NOTES FORM JAY IN CLASS
-    - handlbars has built in loops
-    - must use helpers and middleware
-    - will run into issues using this is 0 (and 1?) is passed - don't worry about that*/
-
 const express = require('express');
 const hbs = require('hbs');
 var app = express();
@@ -21,6 +16,17 @@ hbs.registerHelper('colors',(num)=> {
             msg+=`<td class="colors" style="background-color:#${color}"><span class="top">${color}</span><br/><span class="bottom">${color}</span></td>`;   
         }
         msg+=`</tr>`;
+    }
+    return new hbs.handlebars.SafeString(msg);
+});
+
+hbs.registerHelper('errpage',(num)=> {
+    var msg = '<p>Not Found</p>';
+    num = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+    for(let i=0; i<num; i++) {
+        for(let j=0; j<num; j++) {
+            msg+=`<div class="shrink" style="background-color:#${color}"></div>`;
+        }
     }
     return new hbs.handlebars.SafeString(msg);
 });
