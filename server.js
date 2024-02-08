@@ -42,7 +42,7 @@ app.post('/results',(req,res)=> {
     })
 })
 
-app.use('/error',(req, res)=> {
+app.use('*',(req, res)=> {
     res.render('error.hbs');
 })
 
